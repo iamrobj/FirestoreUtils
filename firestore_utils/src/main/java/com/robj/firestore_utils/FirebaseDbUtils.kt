@@ -200,12 +200,6 @@ class FirebaseDbUtils {
                     .compose(applyObservableRules())
         }
 
-        class AuthException(errorMsg: String) : RuntimeException(errorMsg)
-
-        interface DatabaseValueProvider {
-            fun getId(): String
-        }
-    
         private class FailureListener(private val e: ObservableEmitter<*>?) : OnFailureListener {
             override fun onFailure(ex: Exception) {
                 if (e != null && !e.isDisposed) {
@@ -237,6 +231,12 @@ class FirebaseDbUtils {
             };
         }
 
+    }
+
+    class AuthException(errorMsg: String) : RuntimeException(errorMsg)
+
+    interface DatabaseValueProvider {
+        fun getId(): String
     }
 
 }
