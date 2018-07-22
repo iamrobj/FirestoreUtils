@@ -3,11 +3,11 @@ package com.robj.firestore_utils
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
+import com.robj.radicallyreusable.base.components.Optional
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableTransformer
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 
 /**
  * Created by Rob J on 17/01/18.
