@@ -93,7 +93,7 @@ object FirebaseDbUtils {
         return Observable.create<List<T>> { e ->
             val batch = db.batch()
             for (t in items)
-                batch.set(ref.document(t.id), t)
+                batch.set(ref.document(t.getId()), t)
             batch.commit()
                     .addOnSuccessListener(WriteSuccessListener(e, items))
                     .addOnFailureListener(FailureListener(e))
@@ -187,7 +187,7 @@ object FirebaseDbUtils {
     class AuthException(errorMsg: String) : RuntimeException(errorMsg)
 
     interface DatabaseValueProvider {
-        val id: String
+        fun getId(): String
     }
 
     private class FailureListener(private val e: ObservableEmitter<*>?) : OnFailureListener {
