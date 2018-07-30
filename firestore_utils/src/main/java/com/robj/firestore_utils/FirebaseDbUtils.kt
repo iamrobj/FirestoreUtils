@@ -40,7 +40,7 @@ class FirebaseDbUtils {
         }
 
         @JvmStatic
-        fun <T> readCollectionFromDb(ref: CollectionReference, cls: Class<T>): Observable<List<T>> {
+        fun <T : DatabaseValueProvider> readCollectionFromDb(ref: CollectionReference, cls: Class<T>): Observable<List<T>> {
             return Observable.create<List<T>> { e ->
                 ref.get()
                         .addOnSuccessListener { querySnapshot ->
@@ -96,7 +96,7 @@ class FirebaseDbUtils {
         }
 
         @JvmStatic
-        fun <T : DatabaseValueProvider> writeItemsToDb(db: FirebaseFirestore, ref: CollectionReference, items: List<T>): Observable<List<T>> {
+        fun <T : DatabaseValueProvider> writeDocsToCollection(db: FirebaseFirestore, ref: CollectionReference, items: List<T>): Observable<List<T>> {
             return Observable.create<List<T>> { e ->
                 val batch = db.batch()
                 for (t in items)
